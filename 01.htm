@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		
+		<script>
+			var app = angular.module("app",[]).run(["$rootScope", function($rootScope){
+				$rootScope.taxPercent = 30;
+			}]);
+			app.controller("emp", ["$scope", "$rootScope", function($scope, $rootScope){
+				this.name="Deepak";
+				this.company = "Survik";
+				this.salary = 5000;
+				this.calculateTax=function(){
+					return (this.salary/100)* $rootScope.taxPercent;
+				};
+			}]);
+		</script>
+	</head>
+	<body>
+
+		<div ng-app="app">
+			<div ng-controller="emp as o">
+				Hi {{o.name}}, Your company name is: {{o.company}}
+				And your salary is {{o.salary}} including <strong>{{o.calculateTax()}}</strong>
+			</div>
+		</div>
+
+	</body>
+</html>
